@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view__account_asset_asset_analytic_dimension_form" model="ir.ui.view">
+            <field name='name'>view.account.asset.asset.analytic.dimension.form</field>
+            <field name='model'>account.asset.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_asset_form"/>
+            <field name='arch' type='xml'>
+                <field name="category_id" position="replace">
+                    <field name="category_id" on_change="onchange_category_id(category_id)"/>
+                </field>
+                <field name="partner_id" position="after">
+                    <field name="account_id"/>
+                    <separator string="Analytic Dimensions" colspan="4"/>
+                    <field name="analytic_dimension_1_id" context="{'asset_id':active_id,'account_id':account_id,'dimension':1,'dimension2':analytic_dimension_2_id,'dimension3':analytic_dimension_3_id, 'search_default_dimension1':1}}" attrs="{'required':[('analytic_dimension_1_required','=',True)], 'readonly':[('state','in',('open','close'))]}"/>
+                    <field name="analytic_dimension_2_id" context="{'asset_id':active_id,'account_id':account_id,'dimension':2,'dimension1':analytic_dimension_1_id,'dimension3':analytic_dimension_3_id, 'search_default_dimension2':1}}" attrs="{'required':[('analytic_dimension_2_required','=',True)], 'readonly':[('state','in',('open','close'))]}"/>
+                    <field name="analytic_dimension_3_id" context="{'asset_id':active_id,'account_id':account_id,'dimension':3,'dimension1':analytic_dimension_1_id,'dimension2':analytic_dimension_2_id, 'search_default_dimension3':1}}" attrs="{'required':[('analytic_dimension_3_required','=',True)], 'readonly':[('state','in',('open','close'))]}"/>
+                    <field name="analytic_dimension_1_required" invisible="1"/>
+                    <field name="analytic_dimension_2_required" invisible="1"/>
+                    <field name="analytic_dimension_3_required" invisible="1"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
